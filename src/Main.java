@@ -10,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
-            System.out.println("✅ Koneksi ke MySQL berhasil!");
+            System.out.println(" Koneksi ke MySQL berhasil!");
             Scanner input = new Scanner(System.in);
             int pilihan;
 
@@ -40,14 +40,14 @@ public class Main {
                         int id = input.nextInt();
                         hapusData(conn, id);
                     }
-                    case 4 -> System.out.println("🚪 Keluar dari program...");
-                    default -> System.out.println("❌ Pilihan tidak valid!");
+                    case 4 -> System.out.println(" Keluar dari program...");
+                    default -> System.out.println(" Pilihan tidak valid!");
                 }
 
             } while (pilihan != 4);
 
         } catch (SQLException e) {
-            System.out.println("❌ Gagal koneksi ke database");
+            System.out.println(" Gagal koneksi ke database");
             e.printStackTrace();
         }
     }
@@ -59,9 +59,9 @@ public class Main {
             stmt.setString(1, name);
             stmt.setString(2, email);
             int rows = stmt.executeUpdate();
-            System.out.println("✅ " + rows + " data berhasil ditambahkan: " + name);
+            System.out.println(" " + rows + " data berhasil ditambahkan: " + name);
         } catch (SQLException e) {
-            System.out.println("❌ Gagal menambah data");
+            System.out.println(" Gagal menambah data");
             e.printStackTrace();
         }
     }
@@ -72,7 +72,7 @@ public class Main {
         try (Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
-            System.out.println("\n📋 Data Users:");
+            System.out.println("\n Data Users:");
             System.out.println("+----+----------------------+----------------------------+");
             System.out.printf("| %-2s | %-20s | %-26s |\n", "ID", "Nama", "Email");
             System.out.println("+----+----------------------+----------------------------+");
@@ -86,7 +86,7 @@ public class Main {
 
             System.out.println("+----+----------------------+----------------------------+");
         } catch (SQLException e) {
-            System.out.println("❌ Gagal menampilkan data");
+            System.out.println(" Gagal menampilkan data");
             e.printStackTrace();
         }
     }
@@ -98,11 +98,11 @@ public class Main {
             stmt.setInt(1, id);
             int rows = stmt.executeUpdate();
             if (rows > 0)
-                System.out.println("🗑️ Data dengan id " + id + " berhasil dihapus.");
+                System.out.println(" Data dengan id " + id + " berhasil dihapus.");
             else
-                System.out.println("⚠️ Tidak ada data dengan id " + id + ".");
+                System.out.println(" Tidak ada data dengan id " + id + ".");
         } catch (SQLException e) {
-            System.out.println("❌ Gagal menghapus data");
+            System.out.println(" Gagal menghapus data");
             e.printStackTrace();
         }
     }
